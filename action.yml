@@ -1,0 +1,29 @@
+author: Max Romanyuta
+name: Simple Version
+description: This action will generate version and unique version code based on the last tag
+branding:
+  icon: droplet
+  color: white
+inputs:
+  path:
+    description: The path to the git repository in which the last tag will be searched
+    required: false
+    default: './'
+  isUseGithubRunNumber:
+    description: Indicates whether to use a variable github.run_number from Github Actions to generate a version code
+    required: false
+    default: 'true'
+  offset:
+    description: The value to be added to the version code. If not 0, then the isUseGithubRunNumber parameter will be ignored
+    required: false
+    default: '0'
+outputs:
+  tag:
+    description: The tag that was retrieved from the github repository
+  semver:
+    description: Valid semver that was retrieved from the tag
+  versionCode:
+    description: A number that can be used as a build number, for example in Android
+runs:
+  using: node12
+  main: ./dist/index.js
